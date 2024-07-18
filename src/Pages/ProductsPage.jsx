@@ -1,4 +1,3 @@
-import { useProducts } from "../services/contexts/ProductContext";
 import Loader from "../Components/Loader";
 import ProductCard from "../Components/ProductCard";
 import Categories from "../Components/Categories";
@@ -9,10 +8,14 @@ import {
   getInitialParams,
   searchProducts,
 } from "../helpers/helper";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+////////////////////////Redux ToolKit
+import { useSelector, useDispatch } from "react-redux";
+import { fetchingProducts } from "../features/Products/ProductSlice";
 
 function ProductsPage() {
-  const products = useProducts();
+  const product = useSelector((state) => state.products);
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState({});
   const [displayed, setDisplayed] = useState([]);
@@ -37,12 +40,15 @@ function ProductsPage() {
   }
 
   useEffect(() => {
-    setDisplayed(products);
+    dispatch(fetchingProducts());
+  }, []);
+  useEffect(() => {
+    setDisplayed(product.products);
     setQuery(getInitialParams(params));
-  }, [products]);
+  }, [product.products]);
 
   useEffect(() => {
-    let finalProducts = searchProducts(products, query.search);
+    let finalProducts = searchProducts(product.products, query.search);
     finalProducts = categoryProducts(finalProducts, query.category);
     setParams(query);
     setSearch(query.search || "");
@@ -59,10 +65,10 @@ function ProductsPage() {
 
       <section className="flex flex-col-reverse gap-10 md:gap-4 md:justify-between md:flex-row">
         <div className="md:w-[90%] w-full ">
-          {!displayed.length && <Loader />}
+          {!!product.loading ? <Loader /> : null}
           <section className="flex flex-wrap gap-2 md:justify-between lg:justify-start">
-            {displayed.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {displayed.map((item) => (
+              <ProductCard key={item.id} item={item} />
             ))}
           </section>
         </div>

@@ -5,8 +5,8 @@ import { TbListDetails } from "react-icons/tb";
 import { useBasket } from "../services/contexts/BasketContext";
 import AddingToCart from "./AddingToCart";
 
-function ProductCard({ product }) {
-  const { id, title, price, image } = product;
+function ProductCard({ item }) {
+  const { id, title, price, image } = item;
   const { state } = useBasket();
   const quantity = itemQuantity(state, id);
 
@@ -25,7 +25,7 @@ function ProductCard({ product }) {
           <TbListDetails className="icon" />
         </Link>
 
-        <AddingToCart quantity={quantity} product={product} />
+        <AddingToCart quantity={quantity} product={item} />
       </div>
     </div>
   );
