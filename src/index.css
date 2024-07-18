@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .header {
+    @apply px-4 py-3 mb-10 text-2xl font-semibold tracking-wide rounded-lg md:px-8 bg-ORANGE/90 text-WHITE;
+  }
+  .icon {
+    @apply cursor-pointer size-5 stroke-BLUE;
+  }
+}
