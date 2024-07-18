@@ -14,7 +14,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchingProducts } from "../features/Products/ProductSlice";
 
 function ProductsPage() {
-  const product = useSelector((state) => state.products);
+  const { products, loading } = useSelector((state) => state.products);
+
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState({});
@@ -42,13 +43,14 @@ function ProductsPage() {
   useEffect(() => {
     dispatch(fetchingProducts());
   }, []);
-  useEffect(() => {
-    setDisplayed(product.products);
-    setQuery(getInitialParams(params));
-  }, [product.products]);
 
   useEffect(() => {
-    let finalProducts = searchProducts(product.products, query.search);
+    setDisplayed(products);
+    setQuery(getInitialParams(params));
+  }, [products]);
+
+  useEffect(() => {
+    let finalProducts = searchProducts(products, query.search);
     finalProducts = categoryProducts(finalProducts, query.category);
     setParams(query);
     setSearch(query.search || "");
@@ -65,7 +67,7 @@ function ProductsPage() {
 
       <section className="flex flex-col-reverse gap-10 md:gap-4 md:justify-between md:flex-row">
         <div className="md:w-[90%] w-full ">
-          {!!product.loading ? <Loader /> : null}
+          {!!loading && !displayed.length ? <Loader /> : null}
           <section className="flex flex-wrap gap-2 md:justify-between lg:justify-start">
             {displayed.map((item) => (
               <ProductCard key={item.id} item={item} />

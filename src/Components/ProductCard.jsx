@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import { itemQuantity, shortenText } from "../helpers/helper";
 import { TbListDetails } from "react-icons/tb";
-
-import { useBasket } from "../services/contexts/BasketContext";
+// import { useBasket } from "../services/contexts/BasketContext";
 import AddingToCart from "./AddingToCart";
 
 function ProductCard({ item }) {
   const { id, title, price, image } = item;
-  const { state } = useBasket();
-  const quantity = itemQuantity(state, id);
+  // const { state } = useBasket();
+  const quantity = 0;
 
   return (
     <div className="w-full  xsm:w-[48%] lmd:w-[32%] lg:w-[24%] border-2  border-dashed border-BLUE rounded-lg bg-WHITE overflow-hidden self-stretch px-2">

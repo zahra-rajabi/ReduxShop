@@ -1,11 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useDetails } from "../services/contexts/ProductContext";
 import Loader from "../Components/Loader";
 import DetailsCard from "../Components/DetailsCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchingProducts } from "../features/Products/ProductSlice";
 
 function DetailsPage() {
   const { id } = useParams();
-  const product = useDetails(+id);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchingProducts());
+  }, []);
+
+  const product = useSelector((store) =>
+    store.products.products.find((item) => item.id === +id)
+  );
 
   return (
     <section>

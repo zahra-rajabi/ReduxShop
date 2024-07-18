@@ -6,22 +6,21 @@ import DetailsPage from "./Pages/DetailsPage";
 import CheckoutPage from "./Pages/CheckoutPage";
 import ProductProvider from "./services/contexts/ProductContext";
 import BasketProvider from "./services/contexts/BasketContext";
-
 function App() {
   return (
-    <ProductProvider>
-      <BasketProvider>
-        <Layout>
-          <Routes>
-            <Route path="*" element={<NotFoundPage />} />
-            <Route path="/" element={<Navigate to="/products" replace />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/products/:id" element={<DetailsPage />} />
-          </Routes>
-        </Layout>
-      </BasketProvider>
-    </ProductProvider>
+    // <ProductProvider>
+    // <BasketProvider>
+    <Layout>
+      <Routes>
+        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<Navigate to="/products" replace />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/products/:id" element={<DetailsPage />} />
+      </Routes>
+    </Layout>
+    /* </BasketProvider>
+    </ProductProvider> */
   );
 }
 

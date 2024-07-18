@@ -8,9 +8,8 @@ import { IoArrowBackOutline } from "react-icons/io5";
 
 function DetailsCard({ product }) {
   const { id, image, title, description, category, price } = product;
-  const { state } = useBasket();
-  const quantity = itemQuantity(state, id);
-  console.log(quantity);
+  // const { state } = useBasket();
+  const quantity = 0;
 
   return (
     <section>

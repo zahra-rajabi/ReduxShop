@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
-import { useBasket } from "../services/contexts/BasketContext";
+// import { useBasket } from "../services/contexts/BasketContext";
 
 function Layout({ children }) {
-  let { state } = useBasket();
+  // let { state } = useBasket();
 
   return (
     <>
       <header className="flex items-center justify-between header">
         <Link to="products">Online Shop</Link>
-        {state.counter > 0 && (
+        {/* {state.counter > 0 && (
           <Link
             to="/checkout"
             className="relative p-1 rounded-lg bg-GRAY text-ORANGE"
@@ -19,7 +19,7 @@ function Layout({ children }) {
               {state.counter}
             </span>
           </Link>
-        )}
+        )} */}
       </header>
       {children}
     </>
