@@ -5,7 +5,7 @@ import ProductsPage from "./Pages/ProductsPage";
 import DetailsPage from "./Pages/DetailsPage";
 import CheckoutPage from "./Pages/CheckoutPage";
 import ProductProvider from "./services/contexts/ProductContext";
-import BasketProvider from "./services/contexts/BasketContext";
+// import BasketProvider from "./services/contexts/BasketContext";
 function App() {
   return (
     // <ProductProvider>

@@ -27,22 +27,31 @@ function getInitialParams(searchParams) {
   if (search) query.search = search;
   return query;
 }
-
-function sumProducts(selectedItems) {
-  const total = selectedItems
-    .reduce(
-      (total, selectedItem) =>
-        total + selectedItem.price * selectedItem.quantity,
-      0
-    )
-    .toFixed(2);
-  const counter = selectedItems.reduce(
-    (counter, selectedItem) => counter + selectedItem.quantity,
+function sumTotal(selectedItems) {
+  return selectedItems.reduce(
+    (total, Item) => total + Item.price * Item.quantity,
     0
   );
-
-  return { total, counter };
 }
+function sumCounter(selectedItem) {
+  return selectedItem.reduce((counter, Item) => counter + Item.quantity, 0);
+}
+
+// function sumProducts(selectedItems) {
+//   const total = selectedItems
+//     .reduce(
+//       (total, selectedItem) =>
+//         total + selectedItem.price * selectedItem.quantity,
+//       0
+//     )
+//     .toFixed(2);
+//   const counter = selectedItems.reduce(
+//     (counter, selectedItem) => counter + selectedItem.quantity,
+//     0
+//   );
+
+//   return { total, counter };
+// }
 
 function itemQuantity(state, id) {
   const index = state.selectedItems.findIndex((item) => item.id === id);
@@ -55,6 +64,7 @@ export {
   searchProducts,
   categoryProducts,
   getInitialParams,
-  sumProducts,
   itemQuantity,
+  sumCounter,
+  sumTotal,
 };

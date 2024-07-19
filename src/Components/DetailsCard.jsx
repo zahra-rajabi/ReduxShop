@@ -1,15 +1,15 @@
 import { GrAttachment } from "react-icons/gr";
 import { IoPricetagsOutline } from "react-icons/io5";
 import AddingToCart from "./AddingToCart";
-import { useBasket } from "../services/contexts/BasketContext";
 import { itemQuantity } from "../helpers/helper";
 import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 function DetailsCard({ product }) {
   const { id, image, title, description, category, price } = product;
-  // const { state } = useBasket();
-  const quantity = 0;
+  const state = useSelector((state) => state.card);
+  const quantity = itemQuantity(state, id);
 
   return (
     <section>

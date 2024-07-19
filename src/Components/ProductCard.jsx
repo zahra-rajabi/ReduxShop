@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
 import { itemQuantity, shortenText } from "../helpers/helper";
 import { TbListDetails } from "react-icons/tb";
-// import { useBasket } from "../services/contexts/BasketContext";
+import { useDispatch, useSelector } from "react-redux";
+import { TbShoppingBagCheck } from "react-icons/tb";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoAddSharp, IoRemoveSharp } from "react-icons/io5";
+import {
+  addItem,
+  removeItem,
+  decrease,
+  increase,
+} from "../features/card/CardSlice";
 import AddingToCart from "./AddingToCart";
 
 function ProductCard({ item }) {
   const { id, title, price, image } = item;
-  // const { state } = useBasket();
-  const quantity = 0;
+  const state = useSelector((state) => state.card);
+  const quantity = itemQuantity(state, id);
 
   return (
     <div className="w-full  xsm:w-[48%] lmd:w-[32%] lg:w-[24%] border-2  border-dashed border-BLUE rounded-lg bg-WHITE overflow-hidden self-stretch px-2">
